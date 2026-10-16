@@ -55,7 +55,6 @@ a {
 }
 
 /* 3. Plus-Box ------------------------------------------------------- */
-/* Geschlossen: klein, quadratisch, blasses Blau, oben rechts        */
 .plus-box {
     position: absolute;
     top: 20px;
@@ -68,7 +67,6 @@ a {
     transition: all 0.35s ease;
 }
 
-/* Plus-Zeichen */
 .plus-box summary,
 .plus-box .plus-trigger {
     list-style: none;
@@ -89,9 +87,7 @@ a {
 }
 
 /* Geöffnet: zentriertes Overlay-Modul ---------------------------- */
-/* Variante A: Klasse sitzt direkt auf <details class="plus-box">    */
 .plus-box[open],
-/* Variante B: Klasse sitzt auf einem Container um <details> herum   */
 .plus-box:has(details[open]) {
     position: fixed;
     top: 50%;
@@ -99,12 +95,13 @@ a {
     transform: translate(-50%, -50%);
     width: min(600px, 80vw);
     min-height: auto;
+    max-height: 80vh;            /* Modul nie höher als 80 % des Viewports */
+    overflow-y: auto;            /* bei langem Inhalt scrollbar */
     padding: 15px;
-    z-index: 1000;               /* sicher über allem anderen */
+    z-index: 1000;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* + wird zu ×, zentriert im geöffneten Modul */
 .plus-box[open] summary,
 .plus-box[open] .plus-trigger,
 .plus-box:has(details[open]) summary,
@@ -113,7 +110,7 @@ a {
     margin: 0 auto;
 }
 
-/* Inhalt fließt innerhalb des Moduls (keine separate Pop-up-Box)   */
+/* Inhalt im geöffneten Modul: lesbar formatiert, scrollbar -------- */
 .plus-box .plus-content {
     margin-top: 10px;
     width: 100%;
@@ -121,7 +118,8 @@ a {
     border: none;
     border-radius: 0;
     padding: 0;
-    font-size: 14px;
+    font-size: 14px;             /* Schriftgröße 14 */
+    line-height: 1.5;          /* Zeilenabstand 1,5 */
 }
 
 /* 4. Grafik mit Bildunterschrift */
