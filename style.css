@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    color: #000000;          /* Schriftfarbe schwarz */
+    color: #000000;
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
@@ -17,7 +17,7 @@ body {
 /* 1. Hauptüberschrift */
 h1 {
     text-align: center;
-    color: #0000cc;          /* Blau */
+    color: #0000cc;
     font-family: Verdana, sans-serif;
     margin: 30px 0 20px 0;
 }
@@ -39,7 +39,7 @@ h2 {
 }
 
 .module summary {
-    font-weight: bold;       /* Benennung fett */
+    font-weight: bold;
     cursor: pointer;
     color: #000000;
 }
@@ -54,7 +54,8 @@ a {
     color: #0000cc;
 }
 
-/* 3. Plus-Box: geschlossen klein & oben rechts, geöffnet zentriertes Overlay */
+/* 3. Plus-Box ------------------------------------------------------- */
+/* Geschlossen: klein, quadratisch, blasses Blau, oben rechts        */
 .plus-box {
     position: absolute;
     top: 20px;
@@ -63,12 +64,14 @@ a {
     min-height: 60px;
     border: 1px solid #aaccee;
     border-radius: 8px;
-    background-color: #dce9f7;   /* blasses Blau */
-    transition: all 0.35s ease;  /* sanfter Übergang beim Aufklappen */
+    background-color: #dce9f7;
+    transition: all 0.35s ease;
 }
 
-.plus-box summary {
-    list-style: none;             /* Standard-Dreieck entfernen */
+/* Plus-Zeichen */
+.plus-box summary,
+.plus-box .plus-trigger {
+    list-style: none;
     width: 60px;
     height: 60px;
     display: flex;
@@ -76,37 +79,44 @@ a {
     justify-content: center;
     font-size: 32px;
     font-weight: bold;
-    color: #0000cc;               /* blaues + */
+    color: #0000cc;
     cursor: pointer;
     user-select: none;
 }
 
 .plus-box summary::-webkit-details-marker {
-    display: none;                /* Dreieck in Webkit-Browsern entfernen */
+    display: none;
 }
 
-/* Geöffnet: zentriertes Modul, das Teile der Seite überdeckt */
-.plus-box[open] {
-    position: fixed;               /* aus dem Seitenfluss heraus, bleibt beim Scrollen mittig */
+/* Geöffnet: zentriertes Overlay-Modul ---------------------------- */
+/* Variante A: Klasse sitzt direkt auf <details class="plus-box">    */
+.plus-box[open],
+/* Variante B: Klasse sitzt auf einem Container um <details> herum   */
+.plus-box:has(details[open]) {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(600px, 80vw);     /* feste Mitte, Ränder bleiben frei -> andere Module schauen hervor */
+    width: min(600px, 80vw);
     min-height: auto;
     padding: 15px;
-    z-index: 100;                /* liegt über den anderen Modulen */
+    z-index: 1000;               /* sicher über allem anderen */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.plus-box[open] summary {
-    transform: rotate(45deg);     /* + wird beim Öffnen zu × */
-    margin: 0 auto;               /* × bleibt im geöffneten Modul zentriert */
+/* + wird zu ×, zentriert im geöffneten Modul */
+.plus-box[open] summary,
+.plus-box[open] .plus-trigger,
+.plus-box:has(details[open]) summary,
+.plus-box:has(details[open]) .plus-trigger {
+    transform: rotate(45deg);
+    margin: 0 auto;
 }
 
-/* Inhalt fließt innerhalb des Moduls statt als separate Pop-up-Box */
+/* Inhalt fließt innerhalb des Moduls (keine separate Pop-up-Box)   */
 .plus-box .plus-content {
     margin-top: 10px;
-    width: 100%;                  /* nutzt die Modulbreite aus */
+    width: 100%;
     background-color: transparent;
     border: none;
     border-radius: 0;
@@ -116,7 +126,7 @@ a {
 
 /* 4. Grafik mit Bildunterschrift */
 figure {
-    text-align: center;           /* Bild und Caption zentriert */
+    text-align: center;
     margin: 40px 0;
 }
 
