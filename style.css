@@ -99,7 +99,7 @@ a {
 
 /* ---------- Listen mit gruenen Aufzaehlungszeichen (LMU-Stil) ---------- */
 ul.lmu-list {
-    list-style: disc;
+    list-style: square;
     margin: 10px 0 20px 35px;
 }
 
