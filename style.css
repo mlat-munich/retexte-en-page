@@ -1,4 +1,8 @@
-/* Allgemeine Formatierung */
+/* ============================================================
+   Nachbau der LMU-Seite "Retexte en page"
+   LMU-Gruen: #00883A
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,147 +10,143 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #000000;
-    max-width: 900px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
+    line-height: 1.6;
+    font-size: 16px;
 }
 
-/* 1. Hauptüberschrift */
-h1 {
-    text-align: center;
-    color: #0000cc;
-    font-family: Verdana, sans-serif;
-    margin: 30px 0 20px 0;
-}
-
-/* 2. Unterüberschrift */
-h2 {
-    font-family: Verdana, sans-serif;
-    color: #000000;
-    margin-bottom: 15px;
-}
-
-/* 2. Ausklappbare Module */
-.module details {
-    border: 1px solid #cccccc;
-    border-radius: 6px;
+/* ---------- Kopfbereich ---------- */
+header {
+    border-bottom: 4px solid #00883A;
+    padding-bottom: 15px;
     margin-bottom: 10px;
-    padding: 10px 15px;
-    background-color: #f9f9f9;
 }
 
-.module summary {
+.logo-text {
+    font-size: 20px;
     font-weight: bold;
-    cursor: pointer;
-    color: #000000;
+    color: #00883A;
 }
 
-.module details p {
-    margin-top: 10px;
-    color: #000000;
-}
-
-/* Hyperlinks */
-a {
-    color: #0000cc;
-}
-
-/* 3. Plus-Box ------------------------------------------------------- */
-.plus-box {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 60px;
-    min-height: 60px;
-    border: 1px solid #aaccee;
-    border-radius: 8px;
-    background-color: #dce9f7;
-    transition: all 0.35s ease;
-}
-
-.plus-box summary,
-.plus-box .plus-trigger {
+.main-nav ul {
     list-style: none;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    font-weight: bold;
-    color: #0000cc;
-    cursor: pointer;
-    user-select: none;
-}
-
-.plus-box summary::-webkit-details-marker {
-    display: none;
-}
-
-/* Geöffnet: zentriertes Overlay-Modul ---------------------------- */
-.plus-box[open],
-.plus-box:has(details[open]) {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(600px, 80vw);
-    min-height: auto;
-    max-height: 80vh;            /* Modul nie höher als 80 % des Viewports */
-    overflow-y: auto;            /* bei langem Inhalt scrollbar */
-    padding: 15px;
-    z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.plus-box[open] summary,
-.plus-box[open] .plus-trigger,
-.plus-box:has(details[open]) summary,
-.plus-box:has(details[open]) .plus-trigger {
-    transform: rotate(45deg);
-    margin: 0 auto;
-}
-
-/* Inhalt im geöffneten Modul: lesbar formatiert, scrollbar -------- */
-.plus-box .plus-content {
     margin-top: 10px;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    font-size: 14px;             /* Schriftgröße 14 */
-    line-height: 1.5;          /* Zeilenabstand 1,5 */
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
-/* 4. Grafik mit Bildunterschrift */
-figure {
-    text-align: center;
-    margin: 40px 0;
+.main-nav a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
 }
 
-figure img {
+.main-nav a:hover {
+    color: #00883A;
+    text-decoration: underline;
+}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb {
+    font-size: 13px;
+    color: #555555;
+    margin: 10px 0 25px 0;
+}
+
+.breadcrumb a {
+    color: #00883A;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Hauptüberschrift ---------- */
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* ---------- Fliesstext ---------- */
+p {
+    margin-bottom: 16px;
+}
+
+.lead {
+    font-size: 17px;
+}
+
+/* Fette Zwischenueberschriften im Fliesstext */
+p strong {
+    color: #000000;
+}
+
+/* ---------- Links ---------- */
+a {
+    color: #00883A;
+    font-weight: normal;
+}
+
+/* ---------- Listen mit gruenen Aufzaehlungszeichen (LMU-Stil) ---------- */
+ul.lmu-list {
+    list-style: disc;
+    margin: 10px 0 20px 35px;
+}
+
+ul.lmu-list li::marker {
+    color: #00883A;
+}
+
+ul.lmu-list li {
+    margin-bottom: 6px;
+}
+
+/* Teamliste ohne Aufzaehlungszeichen */
+ul.team-list {
+    list-style: none;
+    margin: 10px 0 20px 0;
+}
+
+ul.team-list li {
+    margin-bottom: 6px;
+}
+
+/* ---------- Bilder mit Bildnachweis ---------- */
+.inline-figure {
+    margin: 30px 0;
+    max-width: 420px;
+}
+
+.inline-figure img {
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
+    display: block;
 }
 
-figcaption {
-    font-size: 14px;
-    color: #000000;
-    margin-top: 8px;
-    font-style: italic;
+.inline-figure figcaption {
+    font-size: 12px;
+    color: #555555;
+    margin-top: 6px;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 6px;
 }
 
-/* 5. Fußzeile */
+/* ---------- Fusszeile ---------- */
 footer {
     text-align: center;
-    border-top: 1px solid #cccccc;
+    border-top: 4px solid #00883A;
     padding: 20px 0;
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 14px;
     color: #000000;
 }
